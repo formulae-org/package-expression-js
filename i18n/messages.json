@@ -1,0 +1,73 @@
+{
+	"pathExpression" : "Expression",
+
+	"nameChild"     : "Child extraction",
+	"childrenChild" : [ "Expression to get its child", "Index of child" ],
+	"leafChild"     : "Child",
+
+	"mnemonicTag" : "Tag",
+	"nameTag"     : "Tag",
+	"childTag"    : "Expression to get its tag",
+	"leafTag"     : "Tag",
+
+	"nameCardinality"  : "Cardinality",
+	"childCardinality" : "Expression to get its cardinality",
+	"leafCardinality"  : "Cardinality",
+
+	"mnemonicAppend" : "Append",
+	"nameAppend"     : "Append",
+	"childrenAppend" : [ "Expression", "Element to append" ],
+	"leafAppend"     : "Append",
+
+	"mnemonicPrepend" : "Prepend",
+	"namePrepend"     : "Prepend",
+	"childrenPrepend" : [ "Expression", "Element to prepend" ],
+	"leafPrepend"     : "Prepend",
+
+	"mnemonicInsert" : "Insert",
+	"nameInsert"     : "Insert",
+	"childrenInsert" : [ "Expression", "Element to insert", "Position to insert element" ],
+	"leafInsert"     : "Insert",
+
+	"mnemonicDelete" : "Delete",
+	"nameDelete"     : "Delete",
+	"childrenDelete" : [ "Expression", "position to delete" ],
+	"leafDelete"     : "Delete",
+
+	"mnemonicProtect" : "Protect",
+	"nameProtect"     : "Protect",
+	"childProtect"    : "Expression to protect",
+	"leafProtect"     : "Protect",
+
+	"mnemonicGroup" : "Group",
+	"nameGroup"     : "Group",
+	"childGroup"    : "List to group",
+	"leafGroup"     : "Group",
+
+	"mnemonicSerialize" : "Serialize",
+	"nameSerialize"     : "Serialize",
+	"childSerialize"    : "Expression to serialize",
+	"leafSerialize"     : "Serialize",
+
+	"mnemonicDeserialize" : "Deserialize",
+	"nameDeserialize"     : "Deserialize",
+	"childDeserialize"    : "String to deserialize",
+	"leafDeserialize"     : "Deserialize",
+
+	"mnemonicCreateExpression" : "CreateExpression",
+	"nameCreateExpression"     : "Create expression",
+	"childrenCreateExpression" : [ "Tag", "Attributes" ],
+	"leafCreateExpression"     : "Create expression",
+
+	"mnemonicCreateExpressionTree"            : "CreateExpressionTree",
+	"nameCreateExpressionTree"                : "Create expression tree",
+	"childCreateExpressionTreeTag"            : "Tag",
+	"childCreateExpressionTreeAttributes"     : "Attributes",
+	"childCreateExpressionTreeSubexpressions" : "Subexpressions",
+	"leafCreateExpressionTree"                : "Create expression tree",
+	
+	"mnemonicReduce" : "Reduce",
+	"nameReduce"     : "Reduce",
+	"childReduce"    : "Expression to reduce",
+	"leafReduce"     : "Reduce"
+}
