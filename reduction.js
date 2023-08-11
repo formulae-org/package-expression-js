@@ -508,7 +508,7 @@ ExpressionPackage.setReducers = () => {
 	ReductionManager.addReducer("Expression.Cardinality",          ExpressionPackage.cardinalityReducer);
 	ReductionManager.addReducer("Expression.Tag",                  ExpressionPackage.tagReducer);
 	ReductionManager.addReducer("Expression.ReplaceTag",           ExpressionPackage.replaceTagReducer);
-	ReductionManager.addReducer("Expression.Protect",              ExpressionPackage.protectReducer, true);
+	ReductionManager.addReducer("Expression.Protect",              ExpressionPackage.protectReducer, { special: true });
 	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduceReducer);
 	ReductionManager.addReducer("Expression.Parentheses",          ExpressionPackage.parenthesesReducer);
 	ReductionManager.addReducer("Expression.Append",               ExpressionPackage.appendReducer);
