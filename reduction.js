@@ -504,21 +504,21 @@ ExpressionPackage.reduce = async (reduce, session) => {
 };
 
 ExpressionPackage.setReducers = () => {
-	ReductionManager.addReducer("Expression.Child",                ExpressionPackage.childReducer);
-	ReductionManager.addReducer("Expression.Cardinality",          ExpressionPackage.cardinalityReducer);
-	ReductionManager.addReducer("Expression.Tag",                  ExpressionPackage.tagReducer);
-	ReductionManager.addReducer("Expression.ReplaceTag",           ExpressionPackage.replaceTagReducer);
-	ReductionManager.addReducer("Expression.Protect",              ExpressionPackage.protectReducer, { special: true });
-	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduceReducer);
-	ReductionManager.addReducer("Expression.Parentheses",          ExpressionPackage.parenthesesReducer);
-	ReductionManager.addReducer("Expression.Append",               ExpressionPackage.appendReducer);
-	ReductionManager.addReducer("Expression.Prepend",              ExpressionPackage.prependReducer);
-	ReductionManager.addReducer("Expression.Insert",               ExpressionPackage.insertReducer);
-	ReductionManager.addReducer("Expression.Delete",               ExpressionPackage.deleteReducer);
-	ReductionManager.addReducer("Expression.Group",                ExpressionPackage.group);
-	ReductionManager.addReducer("Expression.Serialize",            ExpressionPackage.serialize);
-	ReductionManager.addReducer("Expression.Deserialize",          ExpressionPackage.deserialize);
-	ReductionManager.addReducer("Expression.CreateExpression",     ExpressionPackage.createExpression);
-	ReductionManager.addReducer("Expression.CreateExpressionTree", ExpressionPackage.createExpression);
-	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduce);
+	ReductionManager.addReducer("Expression.Child",                ExpressionPackage.childReducer,       "ExpressionPackage.childReducer");
+	ReductionManager.addReducer("Expression.Cardinality",          ExpressionPackage.cardinalityReducer, "ExpressionPackage.cardinalityReducer");
+	ReductionManager.addReducer("Expression.Tag",                  ExpressionPackage.tagReducer,         "ExpressionPackage.tagReducer");
+	ReductionManager.addReducer("Expression.ReplaceTag",           ExpressionPackage.replaceTagReducer,  "ExpressionPackage.replaceTagReducer");
+	ReductionManager.addReducer("Expression.Protect",              ExpressionPackage.protectReducer,     "ExpressionPackage.protectReducer", { special: true });
+	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduceReducer,      "ExpressionPackage.reduceReducer");
+	ReductionManager.addReducer("Expression.Parentheses",          ExpressionPackage.parenthesesReducer, "ExpressionPackage.parenthesesReducer");
+	ReductionManager.addReducer("Expression.Append",               ExpressionPackage.appendReducer,      "ExpressionPackage.appendReducer");
+	ReductionManager.addReducer("Expression.Prepend",              ExpressionPackage.prependReducer,     "ExpressionPackage.prependReducer");
+	ReductionManager.addReducer("Expression.Insert",               ExpressionPackage.insertReducer,      "ExpressionPackage.insertReducer");
+	ReductionManager.addReducer("Expression.Delete",               ExpressionPackage.deleteReducer,      "ExpressionPackage.deleteReducer");
+	ReductionManager.addReducer("Expression.Group",                ExpressionPackage.group,              "ExpressionPackage.group");
+	ReductionManager.addReducer("Expression.Serialize",            ExpressionPackage.serialize,          "ExpressionPackage.serialize");
+	ReductionManager.addReducer("Expression.Deserialize",          ExpressionPackage.deserialize,        "ExpressionPackage.deserialize");
+	ReductionManager.addReducer("Expression.CreateExpression",     ExpressionPackage.createExpression,   "ExpressionPackage.createExpression");
+	ReductionManager.addReducer("Expression.CreateExpressionTree", ExpressionPackage.createExpression,   "ExpressionPackage.createExpression");
+	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduce,             "ExpressionPackage.reduce");
 };
