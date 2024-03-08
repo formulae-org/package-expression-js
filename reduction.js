@@ -40,8 +40,10 @@ ExpressionPackage.childReducer = async (child, session) => {
 
 ExpressionPackage.cardinalityReducer = async (cardinalityExpression, session) => {
 	cardinalityExpression.replaceBy(
-		CanonicalArithmetic.number2Expr(
-			cardinalityExpression.children[0].children.length
+		CanonicalArithmetic.canonical2InternalNumber(
+			new CanonicalArithmetic.Integer(
+				BigInt(cardinalityExpression.children[0].children.length)
+			)
 		)
 	);
 	return true;
@@ -116,7 +118,7 @@ ExpressionPackage.parenthesesReducer = async (expr, session) => {
 	return true;
 };
 
-// Append(expr1, expr2)
+// Append(e1, e2)
 // See: Symbolic.Append(symbol, expr)[special, high]
 
 ExpressionPackage.appendReducer = async (append, session) => {
@@ -132,7 +134,7 @@ ExpressionPackage.appendReducer = async (append, session) => {
 	return true;
 };
 
-// Prepend(expr1, expr2)
+// Prepend(e1, e2)
 // See: Symbolic.Prepend(symbol, expr)[special, high]
 
 ExpressionPackage.prependReducer = async (prepend, session) => {
@@ -148,7 +150,7 @@ ExpressionPackage.prependReducer = async (prepend, session) => {
 	return true;
 };
 
-// Insert(expr1, expr2, pos)
+// Insert(e1, e2, pos)
 // See: Symbolic.Insert(symbol, expr, pos)[special, high]
 
 ExpressionPackage.insertReducer = async (insert, session) => {
@@ -267,7 +269,13 @@ ExpressionPackage.group = async (group, session) => {
 	for (i = 0, n = expressions.length; i < n; ++i) {
 		pair = Formulae.createExpression("List.List");
 		pair.addChild(expressions[i]);
-		pair.addChild(CanonicalArithmetic.number2Expr(occ[i]));
+		pair.addChild(
+			CanonicalArithmetic.canonical2InternalNumber(
+				new CanonicalArithmetic.Integer(
+					BigInt(occ[i])
+				)
+			)
+		);
 		result.addChild(pair);
 	}
 	
