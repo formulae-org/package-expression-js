@@ -286,13 +286,14 @@ ExpressionPackage.group = async (group, session) => {
 ExpressionPackage.serialize = async (serialize, session) => {
 	let expression = serialize.children[0];
 	try {
-		let blob = new Blob([new XMLSerializer().serializeToString(expression.clone().toXML())], { type: 'text/xml' });
+		let xml = await expression.clone().toXML();
+		let blob = new Blob([new XMLSerializer().serializeToString(xml)], { type: 'text/xml' });
 		let result = Formulae.createExpression("String.String");
 		result.set("Value", await blob.text());
 		serialize.replaceBy(result);
 		return true;
 	} catch (error) {
-		ReductionManager.setInError(expression, e);
+		ReductionManager.setInError(expression, error);
 		throw new ReductionError();
 	}
 };
