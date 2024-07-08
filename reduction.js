@@ -286,7 +286,11 @@ ExpressionPackage.group = async (group, session) => {
 ExpressionPackage.serialize = async (serialize, session) => {
 	let expression = serialize.children[0];
 	try {
-		let xml = await expression.clone().toXML();
+		// externalize expression
+		let handler = new ExpressionHandler(expression.clone());
+		CanonicalArithmetic.externalizeNumbersHandler(handler);
+		
+		let xml = await handler.expression.toXML();
 		let blob = new Blob([new XMLSerializer().serializeToString(xml)], { type: 'text/xml' });
 		let result = Formulae.createExpression("String.String");
 		result.set("Value", await blob.text());
@@ -306,8 +310,15 @@ ExpressionPackage.deserialize = async (deserialize, session) => {
 	}
 	
 	try {
-		let expression = Formulae.xmlToExpression(stringExpression.get("Value"), []);
-		deserialize.replaceBy(expression);
+		let promises = [];
+		let expression = Formulae.xmlToExpression(stringExpression.get("Value"), promises);
+		await Promise.all(promises);
+		
+		// internalize numbers
+		let handler = new ExpressionHandler(expression);
+		CanonicalArithmetic.internalizeNumbersHandler(handler);
+		
+		deserialize.replaceBy(handler.expression);
 		return true;
 	} catch (error) {
 		ReductionManager.setInError(stringExpression, error);
