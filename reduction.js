@@ -304,6 +304,7 @@ ExpressionPackage.serialize = async (serialize, session) => {
 
 ExpressionPackage.deserialize = async (deserialize, session) => {
 	let stringExpression = deserialize.children[0];
+	
 	if (stringExpression.getTag() !== "String.String") {
 		ReductionManager.setInError(stringExpression, "Expression must be a string");
 		throw new ReductionError();
@@ -311,7 +312,7 @@ ExpressionPackage.deserialize = async (deserialize, session) => {
 	
 	try {
 		let promises = [];
-		let expression = Formulae.xmlToExpression(stringExpression.get("Value"), promises);
+		let expression = Formulae.xmlToExpression(stringExpression.get("Value"), promises, false);
 		await Promise.all(promises);
 		
 		// internalize numbers
