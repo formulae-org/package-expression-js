@@ -40,10 +40,8 @@ ExpressionPackage.childReducer = async (child, session) => {
 
 ExpressionPackage.cardinalityReducer = async (cardinalityExpression, session) => {
 	cardinalityExpression.replaceBy(
-		CanonicalArithmetic.canonical2InternalNumber(
-			new CanonicalArithmetic.Integer(
-				BigInt(cardinalityExpression.children[0].children.length)
-			)
+		CanonicalArithmetic.createInternalNumber(
+			CanonicalArithmetic.createInteger(cardinalityExpression.children[0].children.length, session)
 		)
 	);
 	return true;
@@ -160,7 +158,7 @@ ExpressionPackage.insertReducer = async (insert, session) => {
 	if (insert.children.length >= 3) {
 		let _N = insert.children[2];
 		
-		pos = CanonicalArithmetic.getInteger(_N);
+		pos = CanonicalArithmetic.getNativeInteger(_N);
 		if (pos === undefined) {
 			ReductionManager.setInError(_N, "Expression must be an integer number");
 			throw new ReductionError();
@@ -200,7 +198,7 @@ ExpressionPackage.deleteReducer = async (deleteExpr, session) => {
 	let expr = deleteExpr.children[0];
 	let _N = deleteExpr.children[1];
 	
-	let pos = CanonicalArithmetic.getInteger(_N);
+	let pos = CanonicalArithmetic.getNativeInteger(_N);
 	if (pos === undefined) {
 		ReductionManager.setInError(_N, "Expression is not an integer number");
 		throw new ReductionError();
@@ -270,10 +268,8 @@ ExpressionPackage.group = async (group, session) => {
 		pair = Formulae.createExpression("List.List");
 		pair.addChild(expressions[i]);
 		pair.addChild(
-			CanonicalArithmetic.canonical2InternalNumber(
-				new CanonicalArithmetic.Integer(
-					BigInt(occ[i])
-				)
+			CanonicalArithmetic.createInternalNumber(
+				CanonicalArithmetic.createInteger(occ[i], session)
 			)
 		);
 		result.addChild(pair);
@@ -288,7 +284,7 @@ ExpressionPackage.serialize = async (serialize, session) => {
 	try {
 		// externalize expression
 		let handler = new ExpressionHandler(expression.clone());
-		CanonicalArithmetic.externalizeNumbersHandler(handler);
+		ReductionManager.externalizeNumbersHandler(handler);
 		
 		let xml = await handler.expression.toXML();
 		let blob = new Blob([new XMLSerializer().serializeToString(xml)], { type: 'text/xml' });
@@ -317,7 +313,7 @@ ExpressionPackage.deserialize = async (deserialize, session) => {
 		
 		// internalize numbers
 		let handler = new ExpressionHandler(expression);
-		CanonicalArithmetic.internalizeNumbersHandler(handler);
+		ReductionManager.internalizeNumbersHandler(handler);
 		
 		deserialize.replaceBy(handler.expression);
 		return true;
