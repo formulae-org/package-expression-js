@@ -41,7 +41,8 @@ ExpressionPackage.childReducer = async (child, session) => {
 ExpressionPackage.cardinalityReducer = async (cardinalityExpression, session) => {
 	cardinalityExpression.replaceBy(
 		CanonicalArithmetic.createInternalNumber(
-			CanonicalArithmetic.createInteger(cardinalityExpression.children[0].children.length, session)
+			CanonicalArithmetic.createInteger(cardinalityExpression.children[0].children.length, session),
+			session
 		)
 	);
 	return true;
@@ -269,7 +270,8 @@ ExpressionPackage.group = async (group, session) => {
 		pair.addChild(expressions[i]);
 		pair.addChild(
 			CanonicalArithmetic.createInternalNumber(
-				CanonicalArithmetic.createInteger(occ[i], session)
+				CanonicalArithmetic.createInteger(occ[i], session),
+				session
 			)
 		);
 		result.addChild(pair);
