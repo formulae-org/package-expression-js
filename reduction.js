@@ -40,8 +40,8 @@ ExpressionPackage.childReducer = async (child, session) => {
 
 ExpressionPackage.cardinalityReducer = async (cardinalityExpression, session) => {
 	cardinalityExpression.replaceBy(
-		CanonicalArithmetic.createInternalNumber(
-			CanonicalArithmetic.createInteger(cardinalityExpression.children[0].children.length, session),
+		Arithmetic.createInternalNumber(
+			Arithmetic.createInteger(cardinalityExpression.children[0].children.length, session),
 			session
 		)
 	);
@@ -159,7 +159,7 @@ ExpressionPackage.insertReducer = async (insert, session) => {
 	if (insert.children.length >= 3) {
 		let _N = insert.children[2];
 		
-		pos = CanonicalArithmetic.getNativeInteger(_N);
+		pos = Arithmetic.getNativeInteger(_N);
 		if (pos === undefined) {
 			ReductionManager.setInError(_N, "Expression must be an integer number");
 			throw new ReductionError();
@@ -199,7 +199,7 @@ ExpressionPackage.deleteReducer = async (deleteExpr, session) => {
 	let expr = deleteExpr.children[0];
 	let _N = deleteExpr.children[1];
 	
-	let pos = CanonicalArithmetic.getNativeInteger(_N);
+	let pos = Arithmetic.getNativeInteger(_N);
 	if (pos === undefined) {
 		ReductionManager.setInError(_N, "Expression is not an integer number");
 		throw new ReductionError();
@@ -269,8 +269,8 @@ ExpressionPackage.group = async (group, session) => {
 		pair = Formulae.createExpression("List.List");
 		pair.addChild(expressions[i]);
 		pair.addChild(
-			CanonicalArithmetic.createInternalNumber(
-				CanonicalArithmetic.createInteger(occ[i], session),
+			Arithmetic.createInternalNumber(
+				Arithmetic.createInteger(occ[i], session),
 				session
 			)
 		);
