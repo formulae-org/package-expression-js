@@ -151,4 +151,13 @@ ExpressionPackage.setExpressions = function(module) {
 		getName:      () => ExpressionPackage.messages["name" + tag],
 		getChildName: index => ExpressionPackage.messages["child" + tag]
 	}));
+	
+	[ "LastResult" ].forEach(tag => Formulae.setExpression(module, "Expression." + tag, {
+		clazz:      Expression.LabelExpression,
+		getTag:     () => "Expression." + tag,
+		getLabel:   () => ExpressionPackage.messages["literal" + tag],
+		getName:    () => ExpressionPackage.messages["name" + tag],
+		isReduced() { return this.reduced; }
+	}));
 };
+

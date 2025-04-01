@@ -39,4 +39,6 @@ ExpressionPackage.setEditions = function() {
 	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafCreateExpression,     () => Expression.wrapperEdition("Expression.CreateExpression"));
 	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafCreateExpressionTree, () => Expression.binaryEdition ("Expression.CreateExpressionTree", true));
 	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafReduce,               () => Expression.wrapperEdition("Expression.Reduce"));
+	
+	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafLastResult, () => Expression.replacingEdition("Expression.LastResult"));
 };

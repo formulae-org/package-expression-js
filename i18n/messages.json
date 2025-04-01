@@ -69,5 +69,10 @@
 	"mnemonicReduce" : "Reduce",
 	"nameReduce"     : "Reduce",
 	"childReduce"    : "Expression to reduce",
-	"leafReduce"     : "Reduce"
+	"leafReduce"     : "Reduce",
+	
+	"literalLastResult" : "Last result",
+	"nameLastResult"    : "Last result",
+	"leafLastResult"    : "Last result"
 }
+

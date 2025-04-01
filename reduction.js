@@ -522,6 +522,16 @@ ExpressionPackage.reduce = async (reduce, session) => {
 	return true;
 };
 
+ExpressionPackage.lastResult = async (lastResult, session) => {
+	if (Formulae.lastResult === null) return false;
+	
+	let handler = new ExpressionHandler(Formulae.lastResult.clone());
+	ReductionManager.internalizeNumbersHandler(handler, session); // Internalization
+	
+	lastResult.replaceBy(handler.expression);
+	return true;
+};
+
 ExpressionPackage.setReducers = () => {
 	ReductionManager.addReducer("Expression.Child",                ExpressionPackage.childReducer,       "ExpressionPackage.childReducer");
 	ReductionManager.addReducer("Expression.Cardinality",          ExpressionPackage.cardinalityReducer, "ExpressionPackage.cardinalityReducer");
@@ -540,4 +550,5 @@ ExpressionPackage.setReducers = () => {
 	ReductionManager.addReducer("Expression.CreateExpression",     ExpressionPackage.createExpression,   "ExpressionPackage.createExpression");
 	ReductionManager.addReducer("Expression.CreateExpressionTree", ExpressionPackage.createExpression,   "ExpressionPackage.createExpression");
 	ReductionManager.addReducer("Expression.Reduce",               ExpressionPackage.reduce,             "ExpressionPackage.reduce");
+	ReductionManager.addReducer("Expression.LastResult",           ExpressionPackage.lastResult,         "ExpressionPackage.lastResult");
 };
