@@ -286,7 +286,7 @@ ExpressionPackage.serialize = async (serialize, session) => {
 	try {
 		// externalize expression
 		let handler = new ExpressionHandler(expression.clone());
-		ReductionManager.externalizeNumbersHandler(handler);
+		ReductionManager.externalizeNumbersHandler(handler, session);
 		
 		let xml = await handler.expression.toXML();
 		let blob = new Blob([new XMLSerializer().serializeToString(xml)], { type: 'text/xml' });
@@ -315,12 +315,13 @@ ExpressionPackage.deserialize = async (deserialize, session) => {
 		
 		// internalize numbers
 		let handler = new ExpressionHandler(expression);
-		ReductionManager.internalizeNumbersHandler(handler);
+		ReductionManager.internalizeNumbersHandler(handler, session);
 		
 		deserialize.replaceBy(handler.expression);
 		return true;
 	} catch (error) {
 		ReductionManager.setInError(stringExpression, error);
+		//console.log(error);
 		throw new ReductionError();
 	}
 };
