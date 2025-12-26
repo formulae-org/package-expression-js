@@ -29,9 +29,7 @@ ExpressionPackage.childReducer = async (child, session) => {
 	
 	let result = CanonicalIndexing.getChildBySpec(left, spec);
 	
-	
 	child.replaceBy(result.clone());
-	//session.log("Element extracted");
 	
 	return true;
 };
