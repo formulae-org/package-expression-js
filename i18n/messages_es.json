@@ -5,9 +5,9 @@
 	"childrenChild" : [ "Expresión a obtener expresión", "Índice de subexpresión" ],
 	"leafChild"     : "Subexpresión",
 
-	"mnemonicTag" : "Etqueta",
+	"mnemonicTag" : "Etiqueta",
 	"nameTag"     : "Etiqueta",
-	"childTag"    : "Expressión a obtener su etiqueta",
+	"childTag"    : "Expresión a obtener su etiqueta",
 	"leafTag"     : "Etiqueta",
 
 	"nameCardinality"  : "Cardinalidad",
@@ -51,11 +51,11 @@
 
 	"mnemonicDeserialize" : "Deserializar",
 	"nameDeserialize"     : "Deserialización",
-	"childDeserialize"    : "Caddena a serializar",
+	"childDeserialize"    : "Cadena a deserializar",
 	"leafDeserialize"     : "Deserialización",
 
 	"mnemonicCreateExpression" : "CrearExpresión",
-	"nameCreateExpression"     : "Crear expresddddión",
+	"nameCreateExpression"     : "Crear expresión",
 	"childrenCreateExpression" : [ "Tag", "Atributos" ],
 	"leafCreateExpression"     : "Crear expresión",
 
@@ -68,7 +68,7 @@
 	
 	"mnemonicReduce" : "Reducir",
 	"nameReduce"     : "Reducir",
-	"childReduce"    : "Expressión a reducir",
+	"childReduce"    : "Expresión a reducir",
 	"leafReduce"     : "Reducir",
 	
 	"literalLastResult" : "Último resultado",
