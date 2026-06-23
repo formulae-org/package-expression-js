@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-'use strict';
+"use strict";
 
 export class ExpressionPackage extends Formulae.Package {}
 
@@ -24,7 +24,7 @@ ExpressionPackage.Child = class extends  Expression.BinaryExpression {
 	getTag() { return "Expression.Child"; }
 	getName() { return ExpressionPackage.messages.nameChild; }
 	getChildName(index) { return ExpressionPackage.messages.childrenChild[index]; }
-
+	
 	prepareDisplay(context) {
 		let left = this.children[0], right = this.children[1];
 		
@@ -33,9 +33,9 @@ ExpressionPackage.Child = class extends  Expression.BinaryExpression {
 		{
 			let bkp = context.fontInfo.size;
 			context.fontInfo.setSizeRelative(context, -4);
-
+			
 			right.prepareDisplay(context);
-
+			
 			context.fontInfo.setSizeAbsolute(context, bkp);
 		}
 		
@@ -63,9 +63,9 @@ ExpressionPackage.Child = class extends  Expression.BinaryExpression {
 		{
 			let bkp = context.fontInfo.size;
 			context.fontInfo.setSizeRelative(context, -4);
-
+			
 			right.display(context, x + right.x, y + right.y);
-
+			
 			context.fontInfo.setSizeAbsolute(context, bkp);
 		}
 	}
@@ -75,7 +75,7 @@ ExpressionPackage.Cardinality = class extends Expression.UnaryExpression {
 	getTag() { return "Expression.Cardinality"; }
 	getName() { return ExpressionPackage.messages.nameCardinality; }
 	getChildName(index) { return ExpressionPackage.messages.childCardinality; }
-
+	
 	prepareDisplay(context) {
 		let child = this.children[0];
 		child.prepareDisplay(context);
@@ -85,7 +85,7 @@ ExpressionPackage.Cardinality = class extends Expression.UnaryExpression {
 		
 		this.width = 3 + child.width + 3;
 		this.height = 3 + child.height + 3;
-
+		
 		this.horzBaseline = child.horzBaseline + 3;
 		this.vertBaseline = child.vertBaseline + 3;
 	}
@@ -108,7 +108,7 @@ ExpressionPackage.CreateExpressionTree = class extends Expression.Function {
 		this.min = 2;
 		this.max = 3;
 	}
-
+	
 	getTag() { return "Expression.CreateExpressionTree"; }
 	getMnemonic() { return ExpressionPackage.messages.mnemonicCreateExpressionTree; }
 	getName() { return ExpressionPackage.messages.nameCreateExpressionTree; }

@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-'use strict';
+"use strict";
 
 export class ExpressionPackage extends Formulae.Package {}
 
@@ -292,7 +292,8 @@ ExpressionPackage.serialize = async (serialize, session) => {
 		result.set("Value", await blob.text());
 		serialize.replaceBy(result);
 		return true;
-	} catch (error) {
+	}
+	catch (error) {
 		ReductionManager.setInError(expression, error);
 		throw new ReductionError();
 	}
@@ -317,7 +318,8 @@ ExpressionPackage.deserialize = async (deserialize, session) => {
 		
 		deserialize.replaceBy(handler.expression);
 		return true;
-	} catch (error) {
+	}
+	catch (error) {
 		ReductionManager.setInError(stringExpression, error);
 		//console.log(error);
 		throw new ReductionError();
