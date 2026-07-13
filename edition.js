@@ -21,24 +21,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 export class ExpressionPackage extends Formulae.Package {}
 
 ExpressionPackage.setEditions = function() {
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafChild, () => Expression.binaryEdition("Expression.Child", false));
-	
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafTag,         () => Expression.wrapperEdition("Expression.Tag"));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafCardinality, () => Expression.wrapperEdition("Expression.Cardinality"));
-	
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafAppend,  () => Expression.binaryEdition("Expression.Append",  false));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafPrepend, () => Expression.binaryEdition("Expression.Prepend", false));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafInsert,  () => Expression.binaryEdition("Expression.Insert",  false));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafDelete,  () => Expression.binaryEdition("Expression.Delete",  false));
-	
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafProtect,     () => Expression.wrapperEdition("Expression.Protect"));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafGroup,       () => Expression.wrapperEdition("Expression.Group"));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafSerialize,   () => Expression.wrapperEdition("Expression.Serialize"));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafDeserialize, () => Expression.wrapperEdition("Expression.Deserialize"));
-	
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafCreateExpression,     () => Expression.wrapperEdition("Expression.CreateExpression"));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafCreateExpressionTree, () => Expression.binaryEdition ("Expression.CreateExpressionTree", true));
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafReduce,               () => Expression.wrapperEdition("Expression.Reduce"));
-	
-	Formulae.addEdition(this.messages.pathExpression, null, this.messages.leafLastResult, () => Expression.replacingEdition("Expression.LastResult"));
+	// Child extraction — binary, selection as the expression: xᵢ
+	Formulae.addBinaryEdition(this.messages, "Expression", "Child", "Expression.Child");
+
+	// Tag / cardinality — wrappers
+	Formulae.addWrapperEditions(this.messages, "Expression", "Expression", [ "Tag", "Cardinality" ]);
+
+	// List mutations — binary, selection as the expression
+	[ "Append", "Prepend", "Insert", "Delete" ].forEach(
+		leaf => Formulae.addBinaryEdition(this.messages, "Expression", leaf, "Expression." + leaf)
+	);
+
+	// Protection / grouping / (de)serialization — wrappers
+	Formulae.addWrapperEditions(this.messages, "Expression", "Expression", [ "Protect", "Group", "Serialize", "Deserialize" ]);
+
+	// Expression construction and reduction
+	Formulae.addWrapperEditions(this.messages, "Expression", "Expression", [ "CreateExpression" ]);
+	Formulae.addBinaryEdition (this.messages, "Expression", "CreateExpressionTree", "Expression.CreateExpressionTree", false);
+	Formulae.addWrapperEditions(this.messages, "Expression", "Expression", [ "Reduce" ]);
+
+	// Last result — replacing; renders as its own label
+	Formulae.addEdition(
+		this.messages.pathExpression,
+		'<expression tag="Expression.LastResult"/>',
+		this.messages.leafLastResult,
+		() => Expression.replacingEdition("Expression.LastResult")
+	);
 };
